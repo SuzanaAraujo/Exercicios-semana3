@@ -41,10 +41,16 @@
         const inputMarca = document.getElementsByName("nome-marca")[0];
         console.log(inputMarca.value);
 
-        var liMarcas = document.createElement("li");
-        liMarcas.classList = "marca";
-        liMarcas.innerText = inputMarca.value;
-        ulMarcas.appendChild(liMarcas);
+        if (inputMarca.value == "") {
+          alert("Adicione uma marca para cadastrar");
+        } else {
+          var liMarcas = document.createElement("li");
+          liMarcas.classList = "marca";
+          liMarcas.innerText = inputMarca.value;
+          ulMarcas.appendChild(liMarcas);
+          alert(`Marca ${inputMarca.value} cadastrada com sucesso!`);
+          inputMarca.value = "";
+        }
       }
     </script>
   </body>
