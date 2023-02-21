@@ -43,7 +43,13 @@
 
       function cadastrarModelo() {
         const inputModelo = document.getElementsByName("nome-modelo")[0];
-        adicionarModeloNoDOM(inputModelo.value);
+        if (inputModelo.value == "") {
+          alert("Insira o nome de um modelo para efetuar o cadastro.");
+        } else {
+          adicionarModeloNoDOM(inputModelo.value);
+          alert(`Modelo ${inputModelo.value} cadastrado com sucesso!`);
+          inputModelo.value = "";
+        }
       }
     </script>
   </body>
