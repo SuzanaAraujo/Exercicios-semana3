@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio de veículos</title>
+  </head>
+  <body>
+    <header>Venda de veículos</header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastro-marca.html">Cadastrar marcas</a></li>
+        <li><a href="cadastro-modelo.html">Cadastrar modelos</a></li>
+        <li><a href="#">Cadastrar veículos</a></li>
+      </ul>
+    </nav>
+    <section>Utilize nosso formulário para cadastrar o seu veículo</section>
+    <form action="#">
+      <fieldset>
+        <legend>Formulário de cadastro de veículo</legend>
+        <label for="selectBrand"
+          >Selecione a marca
+          <select name="selectBrand" id="selectBrand"></select>
+        </label>
+
+        <label for="selectModel">
+          Selecione o modelo
+          <select name="selectModel" id="selectModel"></select>
+        </label>
+
+        <label for="addImg">
+          Insira uma foto de seu veículo
+          <input type="file" name="addImg" />
+        </label>
+
+        <label for="insertColor">
+          Digite a cor de seu veículo
+          <input type="text" name="insertColor" id="insertColor" />
+        </label>
+
+        <label for="insertKm">
+          Qual é a quilometragem de seu veículo?
+          <input type="number" name="insertKm" id="insertKm" />
+        </label>
+
+        <label for="insertValue">
+          Qual é o valor que você deseja anunciar o seu veículo para venda?
+          <input type="number" name="insertValue" id="insertValue" />
+        </label>
+
+        <button type="button" onclick="cadastrarVeiculo()">
+          Salvar cadastro
+        </button>
+      </fieldset>
+    </form>
+  </body>
+</html>

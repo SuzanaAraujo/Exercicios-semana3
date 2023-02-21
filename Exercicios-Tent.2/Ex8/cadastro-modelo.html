@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio de veículos</title>
+  </head>
+  <body>
+    <header>Venda de veículos</header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cadastro-marca.html">Cadastrar marcas</a></li>
+        <li><a href="#">Cadastrar modelos</a></li>
+        <li><a href="cadastro-veiculo.html">Cadastrar veículos</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h1>Cadastrar Modelo de veículo</h1>
+      Modelo: <input type="text" name="nome-modelo" />
+      <button onclick="cadastrarModelo()">Adicionar</button>
+    </div>
+    <section>
+      <h1>Lista de Modelos Cadastrados</h1>
+      <ul id="listaModelos"></ul>
+    </section>
+
+    <script>
+      var modelos = ["Gol", "Fusca"];
+      var ulModelos = document.getElementById("listaModelos");
+
+      function adicionarModeloNoDOM(nome) {
+        var liModelos = document.createElement("li");
+        liModelos.classList = "modelo";
+        liModelos.innerText = nome;
+        ulModelos.appendChild(liModelos);
+      }
+
+      for (const nomeModelo of modelos) {
+        adicionarModeloNoDOM(nomeModelo);
+      }
+
+      function cadastrarModelo() {
+        const inputModelo = document.getElementsByName("nome-modelo")[0];
+        if (inputModelo.value == "") {
+          alert("Insira o nome de um modelo para efetuar o cadastro.");
+        } else {
+          adicionarModeloNoDOM(inputModelo.value);
+          alert(`Modelo ${inputModelo.value} cadastrado com sucesso!`);
+          inputModelo.value = "";
+        }
+      }
+    </script>
+  </body>
+</html>
