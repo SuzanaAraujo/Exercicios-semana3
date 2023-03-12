@@ -18,26 +18,47 @@
     </nav>
     <div>
       <h1>Cadastrar Modelo de veículo</h1>
+      Marcas cadastradas:
+      <select name="selectMarcas" id="selectMarcas"></select>
       Modelo: <input type="text" name="nome-modelo" />
-      <select name="selectMarcas" id="selectMarcas">
-        <option value="Volks">Volks</option>
-        <option value="Fiat">Fiat</option>
-        <option value="Hyundai">Hyundai</option>
-      </select>
+
       <button onclick="cadastrarModelo()">Adicionar</button>
     </div>
 
     <script>
+      criarOpcoes();
+
+      //inserir opções de seleção de marcas no HTML
+
+      function criarOpcoes() {
+        const seletorMarcas = document.getElementById("selectMarcas");
+        const marcas = JSON.parse(localStorage.getItem("Lista-Marcas"));
+        marcas.forEach((marca) => {
+          const option = document.createElement("option");
+          option.innerText = marca;
+          option.value - marca;
+          seletorMarcas.appendChild(option);
+        });
+      }
+
+      //pegar os inputs de modelo e marca
+
       var modelos = [];
 
       function cadastrarModelo() {
         const inputModelo = document.getElementsByName("nome-modelo")[0].value;
         const inputMarca = document.getElementById("selectMarcas").value;
 
-        console.log("modelo: " + inputModelo);
-        console.log("marca: " + inputMarca);
-
-        funcaoModelo();
+        if (inputModelo == "") {
+          alert("Cadastre um modelo para a marca selecionada");
+        } else {
+          alert(
+            `Modelo ${inputModelo} da marca ${inputMarca} cadastrado com sucesso!`
+          );
+          funcaoModelo(inputModelo, inputMarca);
+          localStorage.setItem("Lista-Modelos", JSON.stringify(modelos));
+          console.log(modelos);
+        }
       }
       function funcaoModelo(nomeModelo, nomeMarca) {
         const objetoModelo = {

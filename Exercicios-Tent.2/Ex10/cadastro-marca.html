@@ -27,7 +27,15 @@
     </section>
 
     <script>
-      var marcas = ["Volvo", "Volks"];
+      var marcasJSON = localStorage.getItem("Lista-Marcas");
+      if (marcasJSON) {
+        var marcas = JSON.parse(marcasJSON);
+      } else {
+        marcas = [];
+      }
+      // mesma coisa que
+      //var marcas = marcasJSON ? JSON.parse(marcasJSON) : [];
+
       var ulMarcas = document.getElementById("listaMarcas");
 
       for (const nomeMarca of marcas) {
@@ -48,11 +56,15 @@
           liMarcas.innerText = inputMarca.value;
           ulMarcas.appendChild(liMarcas);
           marcas.push(inputMarca.value);
+          localStorage.setItem("Lista-Marcas", JSON.stringify(marcas));
           alert(`Marca ${inputMarca.value} cadastrada com sucesso!`);
           inputMarca.value = "";
         }
+        function listarMarcasCadastradas() {
+          return marcas;
+        }
+        console.log(listarMarcasCadastradas());
       }
-      console.log(marcas);
     </script>
   </body>
 </html>

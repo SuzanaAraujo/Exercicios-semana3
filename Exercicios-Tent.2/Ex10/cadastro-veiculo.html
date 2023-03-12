@@ -20,18 +20,9 @@
     <form action="#" id="cadastro-veiculo">
       <fieldset>
         <legend>Formulário de cadastro de veículo</legend>
-        <label for="selectBrand"
-          >Selecione a marca
-          <select name="selectBrand" id="selectBrand">
-            <option value="Volks">Volks</option>
-            <option value="Fiat">Fiat</option>
-            <option value="Hyundai">Hyundai</option>
-          </select>
-        </label>
-
-        <label for="selectModel">
-          Insira o modelo
-          <input type="text" id="selectModel" />
+        <label for="selectModel"
+          >Selecione o modelo
+          <select name="selectModel" id="selectModel"></select>
         </label>
 
         <label for="addImg">
@@ -61,32 +52,56 @@
       <p id="infosCadastro">Informações de veículo cadastrado:</p>
     </div>
     <script>
+      document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+      criarOpcoesModelo();
       var veiculo = [];
 
+      function criarOpcoesModelo() {
+        const seletorModelos = document.getElementById("selectModel");
+        const modelosObj = JSON.parse(localStorage.getItem("Lista-Modelos"));
+
+        modelosObj.forEach((modelo) => {
+          const option = document.createElement("option");
+          option.innerText = modelo.nome;
+          option.value = modelo.nome;
+          seletorModelos.appendChild(option);
+        });
+      }
+
       function cadastrarVeiculo() {
-        const inputMarca = document.getElementById("selectBrand").value;
         const inputModelo = document.getElementById("selectModel").value;
         const inputCor = document.getElementById("insertColor").value;
         const inputKm = document.getElementById("insertKm").value;
         const inputValor = document.getElementById("insertValue").value;
-        console.log("Marca: " + inputMarca);
-        console.log("Modelo: " + inputModelo);
-        console.log("Cor: " + inputCor);
-        console.log("Quilometragem: " + inputKm);
-        console.log("Preço: " + inputValor);
 
-        funcaoVeiculo();
+        if (
+          inputModelo == "" ||
+          inputCor == "" ||
+          inputKm == "" ||
+          inputValor == ""
+        ) {
+          alert("Preencha todos os campos para cadastrar um veículo");
+        } else {
+          alert(`Veículo ${inputModelo} cadastrado com sucesso!`);
+          funcaoVeiculo(inputModelo, inputCor, inputKm, inputValor);
+          localStorage.setItem("Lista-Veiculos", JSON.stringify(veiculo));
+        }
+
+        function listaVeiculosCadastrados() {
+          return veiculo;
+        }
+        console.log(listaVeiculosCadastrados());
       }
 
       function funcaoVeiculo(
-        marcaVeiculo,
         modeloVeiculo,
         corVeiculo,
         kmVeiculo,
         valorVeiculo
       ) {
         const objetoVeiculo = {
-          marca: marcaVeiculo,
           nome: modeloVeiculo,
           cor: corVeiculo,
           quilometragem: kmVeiculo,

@@ -61,6 +61,9 @@
       <p id="infosCadastro">Informações de veículo cadastrado:</p>
     </div>
     <script>
+      document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
       var veiculo = [];
 
       function cadastrarVeiculo() {
@@ -69,13 +72,13 @@
         const inputCor = document.getElementById("insertColor").value;
         const inputKm = document.getElementById("insertKm").value;
         const inputValor = document.getElementById("insertValue").value;
-        console.log("Marca: " + inputMarca);
-        console.log("Modelo: " + inputModelo);
-        console.log("Cor: " + inputCor);
-        console.log("Quilometragem: " + inputKm);
-        console.log("Preço: " + inputValor);
 
-        funcaoVeiculo();
+        funcaoVeiculo(inputMarca, inputModelo, inputCor, inputKm, inputValor);
+
+        function listaVeiculosCadastrados() {
+          return veiculo;
+        }
+        console.log(listaVeiculosCadastrados());
       }
 
       function funcaoVeiculo(
